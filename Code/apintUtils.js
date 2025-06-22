@@ -99,7 +99,7 @@ var apintUtils = {
 	},
 	loadUtility: (apint, query) => {
 
-		let utility = apintUtils.queryAPInt(apint, query)[0];
+		let utility = apintUtils.queryUtilities(apint, query)[0];
 
 		if(utility == null)
 			return null;
