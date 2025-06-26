@@ -46,7 +46,7 @@ The utilities field contains an object much like the one in the packages field, 
 specifying the alias of a utility represented by the corresponding value, but said value is in the
 form of a utility object.
 
-A utility object shall have a "source" field, and may optionally have a "properties" field.
+A utility object may have a "source" field, and may have a "properties" field.
 
 The source field may either be a string or a list of strings, the former specifying the file path,
 URL, or alias for the source of the utility, and the latter specifying multiple such sources, in
