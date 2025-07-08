@@ -111,9 +111,9 @@ G-Scene is a convention for APInts which allows "entities" to be used in place o
 
 It is intended to be used for entity-component systems.
 
-### 2.3 - Examples
+### 2.4 - Examples
 
-#### 2.3.1 - Example 1
+#### 2.4.1 - Example 1
 
     {
     	"packages": {
