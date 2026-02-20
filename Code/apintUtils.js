@@ -104,9 +104,12 @@ var apintUtils = {
 		if(utility == null)
 			return null;
 
-		return use(
-			Array.isArray(utility.source) ? utility.source[0] : utility.source
-		);
+		return utility.content != null ?
+			utility.content :
+			use(
+				Array.isArray(utility.source) ?
+					utility.source[0] : utility.source
+			);
 	}
 };
 

@@ -46,11 +46,15 @@ The utilities field contains an object much like the one in the packages field, 
 specifying the alias of a utility represented by the corresponding value, but said value is in the
 form of a utility object.
 
-A utility object may have a "source" field, and may have a "properties" field.
+A utility object may optionally have one of the following: a "source" field or a "content" field;
+and may also optionally have a "properties" field.
 
 The source field may either be a string or a list of strings, the former specifying the file path,
 URL, or alias for the source of the utility, and the latter specifying multiple such sources, in
 order of preference, as backups.
+
+The content field may either be a string, specifying the literal string content of the utility, or
+a number array, specifying the ordered literal byte values of the content of the utility.
 
 The properties field contains an object of miscellaneous structure to be interpreted by portals, in
 order to determine when, where, and how to utilize the utility to which it relates. The properties
@@ -100,13 +104,15 @@ representing their hierarchy, with lower indices having priority.
 A utility's highest priority tag shall define its primary type, with its type being void if it has
 no tags.
 
-### 2.3 - Alternate Fields
+### 2.3 - APInt Masks
 
 Certain APInt portals may accept alternate aliases for certain fields.
 
+Any standardized convention for the use of such alternate aliases is referred to as an APInt mask.
+
 #### 2.3.1 - G-Scene
 
-G-Scene is a convention for APInts which allows "entities" to be used in place of "packages", and
+G-Scene is an APInt mask which allows "entities" to be used in place of "packages", and
 "components" to be used in place of "utilities".
 
 It is intended to be used for entity-component systems.
