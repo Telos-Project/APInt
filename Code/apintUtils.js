@@ -1,8 +1,43 @@
 var apintUtils = {
-	buildAPInt: (apint, path) => {
+	buildAPInt: (apint, mask, path) => {
 
 		apint = JSON.parse(JSON.stringify(apint));
 		path = path != null ? path : [];
+
+		if(mask != null) {
+			
+			if(mask.packages != null) {
+
+				mask.packages.forEach(item => {
+
+					if(apint[item] == null)
+						return;
+
+					apint.packages = Object.assign(
+						apint.packages != null ? apint.packages : { },
+						apint[item]
+					);
+
+					delete apint[item];
+				});
+			}
+			
+			if(mask.utilities != null) {
+
+				mask.utilities.forEach(item => {
+
+					if(apint[item] == null)
+						return;
+
+					apint.utilities = Object.assign(
+						apint.utilities != null ? apint.utilities : { },
+						apint[item]
+					);
+
+					delete apint[item];
+				});
+			}
+		}
 
 		if(apint.packages == null)
 			return apint;
@@ -16,6 +51,7 @@ var apintUtils = {
 
 				apint.packages[key] = apintUtils.buildAPInt(
 					use(apint.packages[key]),
+					mask,
 					path.concat(apint.packages[key])
 				);
 			}
@@ -23,7 +59,7 @@ var apintUtils = {
 			else {
 
 				apint.packages[key] = apintUtils.buildAPInt(
-					apint.packages[key], path
+					apint.packages[key], mask, path
 				);
 			}
 		})
