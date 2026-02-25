@@ -1,3 +1,11 @@
+try {
+	require("telos-use-js");
+}
+
+catch(error) {
+
+}
+
 var apintUtils = {
 	buildAPInt: (apint, mask, path) => {
 
