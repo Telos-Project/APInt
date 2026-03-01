@@ -104,14 +104,28 @@ var apintUtils = {
 
 				let match = true;
 
-				Object.keys(properties).forEach((item) => {
-					
-					if(JSON.stringify(properties[item]) !=
-						JSON.stringify(utility.properties[item])) {
-						
-						match = false;
+				if(typeof properties == "function") {
+
+					try {
+						match = properties(utility);
 					}
-				});
+
+					catch(error) {
+						
+					}
+				}
+
+				else {
+
+					Object.keys(properties).forEach((item) => {
+						
+						if(JSON.stringify(properties[item]) !=
+							JSON.stringify(utility.properties[item])) {
+							
+							match = false;
+						}
+					});
+				}
 
 				if(match)
 					utilities.push(utility);
