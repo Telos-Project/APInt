@@ -80,14 +80,19 @@ This mechanism helps to manage namespace conflicts.
 
 ### 2.2 - Standard Property Protocols
 
-#### 2.2.1 - Links
+#### 2.2.1 - ID
+
+The ID property protocol allows an APInt utility's properties to have the fields "id", containing a
+string, or list thereof, specifying alternate aliases for the utility.
+
+#### 2.2.2 - Links
 
 The links property protocol allows an APInt utility's properties to have the fields "links",
 containing a list of element link objects, representing connections between the utility and another
 APInt element.
 
 An element link object shall have the field "target", containing an APInt element path to the
-target element as either a string split with periods or a list of strings, and may also have the
+target element as either a list of strings or a string split with periods, and may also have the
 fields "properties", containing an object specifying miscellaneous attributes about the connection,
 and "mutual", containing a boolean which, if present and true, indicates the connection and
 associated properties are mutual, with the connection being unidirectional otherwise.
@@ -95,7 +100,7 @@ associated properties are mutual, with the connection being unidirectional other
 Any standardized convention for interpreting element link properties is referred to as an element
 link protocol.
 
-#### 2.2.2 - Tags
+#### 2.2.3 - Tags
 
 The tags property protocol allows an APInt utility's properties to have the fields "tags",
 containing a string or list of strings representing tags associated with the utility, their order
@@ -109,13 +114,6 @@ no tags.
 Certain APInt portals may accept alternate aliases for certain fields.
 
 Any standardized convention for the use of such alternate aliases is referred to as an APInt mask.
-
-#### 2.3.1 - G-Scene
-
-G-Scene is an APInt mask which allows "entities" to be used in place of "packages", and
-"components" to be used in place of "utilities".
-
-It is intended to be used for entity-component systems.
 
 ### 2.4 - Examples
 
