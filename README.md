@@ -100,6 +100,20 @@ associated properties are mutual, with the connection being unidirectional other
 Any standardized convention for interpreting element link properties is referred to as an element
 link protocol.
 
+##### 2.2.2.1 - Proxy Link Protocol
+
+The proxy link protocol is an element link protocol where, if an element link object has the
+"proxy" property, it becomes a element proxy object, meaning that it marks the element to which it
+is attached as accessible via a source other than the APInt to which it belongs.
+
+The proxy property itself contains a string specifying an alias for the alternate source, and the
+order of element proxy objects within the element link objects list to which they belong determine
+their priority relative to each other.
+
+The target of an element proxy object specifies locations or aliases of the alternate source, at
+which the element to which it is attached is accessible, may be located. If multiple such locations
+are specified in a list, their order determines their priority relative to each other.
+
 #### 2.2.3 - Tags
 
 The tags property protocol allows an APInt utility's properties to have the fields "tags",
