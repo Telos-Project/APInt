@@ -50,8 +50,8 @@ A utility object may optionally have one of the following: a "source" field or a
 and may also optionally have a "properties" field.
 
 The source field may either be a string or a list of strings, the former specifying the file path,
-URL, or alias for the source of the utility, and the latter specifying multiple such sources, in
-order of preference, as backups.
+URL, or alias for the source of the content of the utility, and the latter specifying multiple such
+sources, in order of preference, as backups.
 
 The content field may either be a string, specifying the literal string content of the utility, or
 a number array, specifying the ordered literal byte values of the content of the utility.
@@ -85,6 +85,9 @@ This mechanism helps to manage namespace conflicts.
 The ID property protocol allows an APInt utility's properties to have the fields "id", containing a
 string, or list thereof, specifying alternate aliases for the utility.
 
+When using this protocol, the alternate aliases may be used to identify the elements to which they
+are attached within element paths.
+
 #### 2.2.2 - Links
 
 The links property protocol allows an APInt utility's properties to have the fields "links",
@@ -96,6 +99,9 @@ target element as either a list of strings or a string split with periods, and m
 fields "properties", containing an object specifying miscellaneous attributes about the connection,
 and "mutual", containing a boolean which, if present and true, indicates the connection and
 associated properties are mutual, with the connection being unidirectional otherwise.
+
+Additionally, if the target is located in another APInt, the element link object may have the field
+"location", containing a string specifying the location of the external APInt.
 
 Any standardized convention for interpreting element link properties is referred to as an element
 link protocol.
@@ -140,8 +146,7 @@ Any standardized convention for the use of such alternate aliases is referred to
     				"vector": {
     					"source": "src/math/vector.js",
     					"properties": {
-    						"language": "javascript",
-    						"type": "library"
+    						"tags": ["library", "javascript"]
     					}
     				}
     			}
@@ -149,11 +154,11 @@ Any standardized convention for the use of such alternate aliases is referred to
     		"graphics": "https://example.com/graphics.json"
     	},
     	"utilities": {
-    		"init": {
-    			"source": ["./init.py", "./init.js"]
+    		"graph": {
+    			"source": ["./graph.py", "./graph.js"]
     		}
     	},
     	"properties": {
-    		"platform": "web"
+    		"tags": ["library"]
     	}
     }
