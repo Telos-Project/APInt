@@ -78,6 +78,24 @@ should not contain periods.
 
 This mechanism helps to manage namespace conflicts.
 
+#### 2.1.5 - APInt Masks
+
+Certain APInt portals may accept alternate aliases for certain fields.
+
+Any standardized convention for the use of such alternate aliases is referred to as an APInt mask.
+
+#### 2.1.6 - JSON Conversion
+
+APInt JSON conversion allows arbitrary JSON values to be converted to APInt elements.
+
+A primitive value shall be converted to a utility containing its stringified form as its content.
+
+An object shall be converted to a package where all of its primitive fields become utilities of
+said package using the keys of said fields as the aliases of said utilities, and where all of its
+non-primitive fields become sub-packages of said package using the keys of said fields as the
+aliases of said sub-packages. A list shall be treated as an object where the key of each value is
+its stringified index.
+
 ### 2.2 - Standard Property Protocols
 
 #### 2.2.1 - ID
@@ -129,15 +147,9 @@ representing their hierarchy, with lower indices having priority.
 A utility's highest priority tag shall define its primary type, with its type being void if it has
 no tags.
 
-### 2.3 - APInt Masks
+### 2.3 - Examples
 
-Certain APInt portals may accept alternate aliases for certain fields.
-
-Any standardized convention for the use of such alternate aliases is referred to as an APInt mask.
-
-### 2.4 - Examples
-
-#### 2.4.1 - Example 1
+#### 2.3.1 - Example 1
 
     {
     	"packages": {
