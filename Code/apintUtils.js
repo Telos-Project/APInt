@@ -95,6 +95,9 @@ var apintUtils = {
 
 			Object.keys(apint.utilities).forEach(key => {
 
+				if(path.length == 1 && key.toLowerCase() != path[0])
+					return;
+
 				let utility = JSON.parse(JSON.stringify(apint.utilities[key]));
 
 				utility.properties = Object.assign(
@@ -136,18 +139,20 @@ var apintUtils = {
 
 			Object.keys(apint.packages).forEach(key => {
 
+				let newPath = JSON.parse(JSON.stringify(path));
+
 				if(typeof apint.packages[key] == "string")
 					return;
 
-				if(path.length > 0) {
+				if(newPath.length > 0) {
 
-					if(key.toLowerCase() == path[0])
-						path = path.slice(1);
+					if(key.toLowerCase() == newPath[0])
+						newPath = newPath.slice(1);
 				}
 
 				utilities = utilities.concat(
 					apintUtils.queryUtilities(
-						apint.packages[key], path, properties, inheritance
+						apint.packages[key], newPath, properties, inheritance
 					)
 				);
 			});
@@ -155,19 +160,42 @@ var apintUtils = {
 
 		return utilities;
 	},
-	loadUtility: (apint, query) => {
+	use: (apint, query) => {
 
-		let utility = apintUtils.queryUtilities(apint, query)[0];
+		try {
 
-		if(utility == null)
+			if(typeof apint == "string") {
+
+				try {
+					apint = JSON.parse(apint);
+				}
+
+				catch(error) {
+					apint = use(apint);
+				}
+			}
+
+			let utility = apintUtils.queryUtilities(
+				apintUtils.buildAPInt(
+					typeof apint == "object" ? apint : JSON.parse(apint)
+				),
+				query
+			)[0];
+
+			if(utility == null)
+				return null;
+
+			return utility.content != null ?
+				utility.content :
+				use(
+					Array.isArray(utility.source) ?
+						utility.source[0] : utility.source
+				);
+		}
+
+		catch(error) {
 			return null;
-
-		return utility.content != null ?
-			utility.content :
-			use(
-				Array.isArray(utility.source) ?
-					utility.source[0] : utility.source
-			);
+		}
 	}
 };
 
