@@ -100,7 +100,7 @@ its stringified index.
 
 #### 2.2.1 - ID
 
-The ID property protocol allows an APInt utility's properties to have the fields "id", containing a
+The ID property protocol allows an APInt utility's properties to have the field "id", containing a
 string, or list thereof, specifying alternate aliases for the utility.
 
 When using this protocol, the alternate aliases may be used to identify the elements to which they
@@ -108,7 +108,7 @@ are attached within element paths.
 
 #### 2.2.2 - Links
 
-The links property protocol allows an APInt utility's properties to have the fields "links",
+The links property protocol allows an APInt utility's properties to have the field "links",
 containing a list of element link objects, representing connections between the utility and another
 APInt element.
 
@@ -138,9 +138,17 @@ The target of an element proxy object specifies locations or aliases of the alte
 which the element to which it is attached is accessible, may be located. If multiple such locations
 are specified in a list, their order determines their priority relative to each other.
 
-#### 2.2.3 - Tags
+#### 2.2.3 - Meta
 
-The tags property protocol allows an APInt utility's properties to have the fields "tags",
+The meta property protocol allows an APInt utility's properties to have the field "meta",
+containing an object which may itself contain other property fields that would otherwise be sibling
+fields to the meta field, such that the meta field may be placed in the properties of a package
+object, indicating that the fields it contains are properties of said package, and not of said
+package's descendants.
+
+#### 2.2.4 - Tags
+
+The tags property protocol allows an APInt utility's properties to have the field "tags",
 containing a string or list of strings representing tags associated with the utility, their order
 representing their hierarchy, with lower indices having priority.
 
